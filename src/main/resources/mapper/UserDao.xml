@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+
+<!-- 设置为UserDao接口方法提供sql语句配置 -->
+<mapper namespace="com.xeay.dao.UserDao">
+
+    <select id="searchUserById" resultType="com.xeay.entity.User" parameterType="int">
+        SELECT * FROM user WHERE userid = #{userid}
+    </select>
+    <select id="getUserList" resultType="com.xeay.entity.User">
+        SELECT
+            userid,username
+		FROM
+			user
+		ORDER BY
+			userid
+		LIMIT #{offset}, #{num}
+    </select>
+    <update id="modifyUserName">
+		UPDATE user
+		SET username = #{username}
+		WHERE
+			userid = #{userid}
+	</update>
+</mapper>
